@@ -20,13 +20,27 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+          <% if logged_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile [<%= current_user.user_name if logged_in? %>]
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%=  link_to "View Profile", user_path(current_user), class: "dropdown-item" %>
+                <%=  link_to "Edit User Profile", edit_user_path(current_user), class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Delete your Profile", user_path(current_user), method: :delete, data: { confirm: "Are you sure you want to delete your profile?" }, class: "dropdown-item text-danger"  %>
+            </li>
+          <% end %>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <% if logged_in? %>
+            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link"%> 
+          <% else %>
+            <%= link_to "Login", login_path, class: "nav-link"%> 
+          <% end %>
         </form>
       </div>
   </nav>
