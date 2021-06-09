@@ -1,3 +1,18 @@
 <h1 class="text-center mt-4"><strong> Create a New Article </strong></h1>  
 
 <%= render 'form' %>
+
+<script type="text/javascript">
+  function handleMethod(val){
+    if(val.value == 'percent'){
+	    cmsn_value_field = document.getElementsByClassName('cmsn_value')[0]
+	    cmsn_value_field.type = 'number'
+	    cmsn_value_field.min = '0'
+	    cmsn_value_field.max = '100'
+    }else {
+	    cmsn_value_field = document.getElementsByClassName('cmsn_value')[0]
+	    cmsn_value_field.type = 'text'
+    }
+  }
+
+</script>

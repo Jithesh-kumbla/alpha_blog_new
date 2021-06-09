@@ -1,0 +1,9 @@
+<h1 class="text-center mt-4"><strong> <%= @user.user_name %>'s Profile </strong></h1>
+<%= gravator_for @user, size: 200 %>
+
+<div class="text-center mt-4">
+	<%= link_to "Update User Info", edit_user_path(@user) %>
+</div>
+<h3 class="text-center mt-4"><strong> Articles </strong></h3>
+
+<%= render "articles/article", obj: @user.articles %>
