@@ -1,1 +1,25 @@
 <h1 class="text-center mt-4 "> Category: <%= @category.name %> </h1>
+<div class="text-center">
+	<%= link_to "Edit category", edit_category_path(@category), class: "btn btn-primary"%>
+</div>
+<% if @category.articles.any? %>
+<% @category.articles.each do |article| %>
+<div class="row justify-content-md-center ">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-header">
+          by <%= article.user.user_name%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5>
+        </div>
+        <div class="card-footer text-muted">
+          Created At:<%= time_ago_in_words(article.created_at) %> | Updated At: <%= time_ago_in_words(article.updated_at) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+<% else %>
+<h3 class="text-center mt-4">There is no articles assoicated with this category.</h3>
+<% end %>
