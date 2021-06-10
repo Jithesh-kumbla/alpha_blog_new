@@ -20,6 +20,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(do_whitelisting)
+    byebug
+    debugger
     @article.user = current_user
     if @article.save
       flash[:notice] = "Articles got saved successfully"
@@ -52,7 +54,7 @@ class ArticlesController < ApplicationController
   private
 
   def do_whitelisting
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def set_article
